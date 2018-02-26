@@ -1,6 +1,7 @@
 class Sorter {
   constructor() {
       this.arr = [];
+      this.setC;
     // your implementation
   }
 
@@ -26,33 +27,35 @@ class Sorter {
 
   sort(indices) {
       
-      indices.sort();
+     indices.sort();
       var buff = 0,g=0;
       if(this.arr.length===indices.length)
           {
-              this.arr.sort();
-              /*for(var i=this.arr.length-1;i>0;i--){
-                  for(var j=0;j<i;j++){
-                     if( this.arr[j] > this.arr[j+1] ){
-                         buff = this.arr[j];
-                         this.arr[j] = this.arr[j+1];
-                         this.arr[j+1] = buff;
-                        } 
-                  }
-              }*/
+              this.arr.sort(this.setC);
           } 
       else if(indices.length===2){
-          if(this.arr[indices[0]]>this.arr[indices[1]]){
-              buff =this.arr[indices[0]];
-              this.arr[indices[0]] = this.arr[indices[1]];
-              this.arr[indices[1]] = buff;
+          if(this.setC === undefined){
+             if(this.arr[indices[0]]>this.arr[indices[1]]){
+             var buff = [];
+              buff.push(this.arr[indices[0]],this.arr[indices[1]]);
+                buff.sort(this.setC);
+              this.arr[indices[0]] = buff[0];
+              this.arr[indices[1]] = buff[1];
+             } 
+          }else{
+              var buff = [];
+              buff.push(this.arr[indices[0]],this.arr[indices[1]]);
+                buff.sort(this.setC);
+              this.arr[indices[0]] = buff[0];
+              this.arr[indices[1]] = buff[1];
           }
+           
       }
     // your implementation
   }
 
   setComparator(compareFunction) {
-     this.arr.sort(compareFunction);
+      this.setC = compareFunction;
     // your implementation
   }
 }
